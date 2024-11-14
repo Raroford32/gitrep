@@ -14,15 +14,15 @@ BASE_URL_MAP = {
 }
 MODEL_MAP = {
     ProviderType.OPENAI: [
-        "gpt-4-1106-preview",
-        "gpt-3.5-turbo-16k",
+        "o1-preview",
+        "gpt-4o",
     ],
     ProviderType.OPENROUTER: [
-        "anthropic/claude-3-haiku",
-        "anthropic/claude-3-haiku:beta",
-        "anthropic/claude-3-opus",
-        "anthropic/claude-3-sonnet",
-        "anthropic/claude-3-sonnet:beta",
+        "openai/o1-mini-2024-09-12",
+        "openai/o1-preview-2024-09-12",
+        "qwen/qwen-2.5-coder-32b-instruct",
+        "x-ai/grok-beta",
+        "openai/chatgpt-4o-latest",
         "anthropic/claude-3-opus:beta",
     ],
 }
@@ -69,7 +69,7 @@ class ChatClient:
         self.client = OpenAI(base_url=base_url, api_key=api_key)
 
     def chat(
-        self, messages, model="anthropic/claude-3-opus", temperature=0.7, stream=True
+        self, messages, model="openai/chatgpt-4o-latest", temperature=0.7, stream=True
     ):
         return self.client.chat.completions.create(
             model=model, messages=messages, stream=stream, temperature=temperature
